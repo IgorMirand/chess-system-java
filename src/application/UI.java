@@ -31,6 +31,11 @@ public class UI {
 	public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
 	public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 	
+	public static void clearScreen() {
+		System.out.println("\033[H\033[2J");
+		System.out.flush();
+	}
+	
 	public static ChessPosition readChessPosition(Scanner sc) {
 		try {
 			String s = sc.nextLine();
@@ -38,7 +43,7 @@ public class UI {
 			int row = Integer.parseInt(s.substring(1));
 			return new ChessPosition(column, row);
 		}catch (RuntimeException e) {
-			throw new InputMismatchException("Error creting board: there must be at lest 1 row and 1 column");
+			throw new InputMismatchException("Error reading ChessPosition. vadid value a1 to h8");
 		}
 	}
 
